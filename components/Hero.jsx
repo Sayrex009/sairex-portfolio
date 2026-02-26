@@ -1,158 +1,114 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
 
-const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-      },
-    },
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    },
-    hover: {
-      scale: 1.05,
-      boxShadow: '0 0 40px rgba(168, 85, 247, 0.5)',
-    },
-  };
-
-  return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-slate-950">
-      {/* Анимированный фон */}
-      <div className="absolute inset-0">
-        {/* Градиентные блобы */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" />
-        <div className="absolute top-40 right-1/4 w-96 h-96 bg-violet-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-violet-700 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{ animationDelay: '4s' }} />
-
-        {/* Светящиеся эффекты */}
-        <motion.div
-          className="absolute pointer-events-none"
-          style={{
-            left: mousePosition.x - 100,
-            top: mousePosition.y - 100,
-          }}
-          transition={{ type: 'spring', stiffness: 500, damping: 140 }}
-        >
-          <div className="w-48 h-48 rounded-full bg-glow-radial opacity-40" />
-        </motion.div>
-      </div>
-
-      {/* Контент */}
-      <div className="relative z-10 h-screen flex items-center justify-center px-6">
-        <motion.div
-          className="text-center max-w-4xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Мигающий баннер */}
-          <motion.div
-            variants={textVariants}
-            className="inline-block mb-8 px-6 py-2 rounded-full border border-violet-500/30 bg-violet-950/20 backdrop-blur-md"
-          >
-            <span className="text-violet-300 text-sm font-medium">Welcome to my portfolio</span>
-          </motion.div>
-
-          {/* Заголовок */}
-          <motion.h1
-            variants={textVariants}
-            className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-silver-300 via-violet-400 to-violet-500 bg-clip-text text-transparent"
-          >
-            Fullstack Developer
-          </motion.h1>
-
-          {/* Подзаголовок */}
-          <motion.p
-            variants={textVariants}
-            className="text-xl md:text-2xl text-silver-400 mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Создаю минималистичные, высокопроизводительные приложения с элегантным дизайном и плавными анимациями
-          </motion.p>
-
-          {/* Кнопки CTA */}
-          <motion.div
-            variants={textVariants}
-            className="flex gap-6 justify-center flex-wrap"
-          >
-            <motion.a
-              href="#projects"
-              variants={buttonVariants}
-              whileHover="hover"
-              className="px-8 py-4 rounded-lg bg-gradient-to-r from-violet-600 to-violet-500 text-white font-semibold backdrop-blur-md border border-violet-400/20 hover:border-violet-400/50 transition-all cursor-pointer"
-            >
-              Посмотреть проекты
-            </motion.a>
-            <motion.a
-              href="#contact"
-              variants={buttonVariants}
-              whileHover="hover"
-              className="px-8 py-4 rounded-lg border border-silver-400/40 text-silver-300 font-semibold backdrop-blur-md bg-slate-950/40 hover:bg-slate-900/60 hover:border-silver-400/80 transition-all cursor-pointer"
-            >
-              Написать мне
-            </motion.a>
-          </motion.div>
-
-          {/* Прокрутка вниз */}
-          <motion.div
-            variants={textVariants}
-            className="mt-20 flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-silver-500"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
+const reveal = {
+  hidden: { opacity: 0, y: 40, scale: 0.95, filter: "blur(12px)" },
+  visible: {
+    opacity: 1, 
+    y: 0, 
+    scale: 1, 
+    filter: "blur(0px)",
+    transition: {
+      duration: 1,
+      ease: [0.16, 1, 0.3, 1], // Плавный инерционный выезд (Custom Expo Ease)
+    }
+  },
 };
 
-export default Hero;
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Задержка между появлением каждого элемента
+      delayChildren: 0.2,
+    },
+  },
+};
+
+export default function Hero() {
+  return (
+    <section className="relative min-h-[100dvh] w-full flex items-center justify-center px-6 py-20 overflow-hidden   text-white">
+      
+      {/* ===== ФОН (Оптимизированный) ===== */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Анимированное свечение (CSS) */}
+        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-violet-900 rounded-full blur-[140px] animate-pulse" />
+        
+        {/* Текстурная сетка */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] brightness-100" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
+      </div>
+
+      {/* ===== КОНТЕНТ ===== */}
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 max-w-4xl w-full flex flex-col gap-8 top-12 items-center"
+      >
+        {/* Бейдж с увеличенным отступом снизу */}
+        <motion.div variants={reveal} className="mb-10">
+          <div className="px-5 py-2 rounded-full w-[350px] h-10 flex items-center justify-center border border-white/10 bg-white/5 backdrop-blur-md">
+            <span className="text-xs  md:text-sm font-semibold tracking-[0.3em] uppercase bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
+              Fullstack Разработчик
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Заголовок с плотным межстрочным интервалом */}
+        <motion.h1
+          variants={reveal}
+          className="text-5xl sm:text-7xl lg:text-8xl font-black text-center tracking-tighter leading-[1] mb-8"
+        >
+          СОЗДАЮ <br />
+          <span className="text-gray-500">БУДУЩЕЕ</span> <br />
+          <span className="bg-gradient-to-r from-white via-violet-200 to-purple-500 bg-clip-text text-transparent">
+            В КОДЕ
+          </span>
+        </motion.h1>
+
+        {/* Описание с увеличенным пространством вокруг */}
+        <motion.p
+          variants={reveal}
+          className="max-w-2xl text-center text-gray-400 text-lg md:text-xl leading-relaxed mb-16 px-4"
+        >
+          Разработка высокопроизводительных веб-интерфейсов и сложных серверных решений. 
+          Минимализм в дизайне, максимализм в деталях.
+        </motion.p>
+
+        {/* БЛОК КНОПОК: Добавлено много «воздуха» (mt-20 и gap-6) */}
+        <motion.div
+          variants={reveal}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto"
+        >
+          <a
+            href="#projects"
+            className="group relative flex items-center justify-center px-10 h-16 w-full sm:w-72 overflow-hidden rounded-full bg-white text-black font-bold text-lg transition-transform hover:scale-105 active:scale-95"
+          >
+            <span className="relative z-10">Смотреть проекты</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-200 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </a>
+
+          <a
+            href="#contact"
+            className="flex items-center justify-center px-10 h-16 w-full sm:w-72 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl font-bold text-lg hover:bg-white/10 hover:border-white/40 transition-all active:scale-95"
+          >
+            Связаться
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* Элегантный индикатор скролла */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
+      >
+        <div className="w-[1px] h-12 bg-gradient-to-b from-violet-500 to-transparent animate-bounce" />
+      </motion.div>
+    </section>
+  );
+}
