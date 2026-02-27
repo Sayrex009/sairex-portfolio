@@ -6,39 +6,39 @@ import { useState } from 'react';
 const PROJECTS = [
   {
     id: 1,
-    title: 'E-commerce Platform',
-    description: 'Полнофункциональная платформа с Admin панелью, интеграцией платежей и в реальном времени уведомлениями',
-    tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Stripe'],
+    title: 'One-Pc',
+    description: 'Интернет-магазин компьютерной техники с кастомной админкой, интеграцией платежей и аналитикой',
+    tags: ['Next.js', 'TypeScript','Tailwind CSS', 'API', 'PostgreSQL', 'Vercel', 'JavaScript'],
     image: '🛍️',
     color: 'from-blue-600 to-cyan-600',
-    link: '#',
+    link: 'https://www.onepc.uz/ru',
   },
   {
     id: 2,
-    title: 'AI Chat Application',
-    description: 'Чат-приложение с интеграцией GPT, микроинтеракциями и real-time синхронизацией',
-    tags: ['React', 'WebSocket', 'OpenAI API', 'Redis'],
+    title: 'AI Telegram Bot',
+    description: 'Чат-приложение которое переделавыет фото на видео прямо внутри телеграмма, с интеграцией AI, микроинтеракциями и real-time синхронизацией',
+    tags: [ 'Gemini AI', 'docker',  'Redis', 'Aiogram', 'python', 'django', 'PostgreSQL'],
     image: '🤖',
     color: 'from-purple-600 to-pink-600',
-    link: '#',
+    link: 'https://github.com/Sayrex009/Sairex_AI_VIDEO_PHOTO',
   },
   {
     id: 3,
-    title: 'Design System',
-    description: 'Переиспользуемые компоненты, документация и Storybook для масштабируемых проектов',
-    tags: ['React', 'Tailwind', 'Storybook', 'TypeScript'],
+    title: 'Kassimov Stuido',
+    description: 'Сайт для бронирования фотостудии с календарем, онлайн-оплатой и админкой для управления бронированиями',
+    tags: ['React', 'Tailwind', 'Next.js', 'API', 'PostgreSQL', 'Vercel', 'TypeScript'],
     image: '✨',
     color: 'from-green-600 to-emerald-600',
-    link: '#',
+    link: 'https://www.kasimovstudio.uz/uz',
   },
   {
     id: 4,
-    title: 'Analytics Dashboard',
-    description: 'Real-time дашборд с графиками, фильтрацией и экспортом данных',
-    tags: ['Next.js', 'Chart.js', 'PostgreSQL', 'Vercel'],
+    title: 'Deribit',
+    description: 'Бекенд проект который получает данные с биржи криптовалют, обрабатывает их и отображает в виде интерактивных графиков и таблиц',
+    tags: ['Python', 'Docker', 'Django', 'PostgreSQL', 'Redis', 'Celery', 'RabbitMQ','Data Visualization'],
     image: '📊',
     color: 'from-orange-600 to-red-600',
-    link: '#',
+    link: 'https://github.com/Sayrex009/Deribit',
   },
 ];
 
@@ -85,10 +85,10 @@ const Projects = () => {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-silver-300 to-violet-400 bg-clip-text text-transparent">
+          <h2 className="text-6xl font-bold bg-gradient-to-r from-slate-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-silver-400 text-lg mt-4">
+          <p className="text-silver-400 text-[#ffff] text-lg mt-4">
             Избранные проекты, которыми я горжусь
           </p>
         </motion.div>
@@ -140,12 +140,12 @@ const Projects = () => {
                 {/* Нижняя часть - контент */}
                 <div className="p-8 space-y-4">
                   {/* Заголовок */}
-                  <h3 className="text-2xl font-bold text-silver-300">
+                  <h3 className="text-2xl text-indigo-500 font-bold text-silver-300">
                     {project.title}
                   </h3>
 
                   {/* Описание */}
-                  <p className="text-silver-400 leading-relaxed min-h-16">
+                  <p className="text-silver-400 text-[#ffff] leading-relaxed min-h-16">
                     {project.description}
                   </p>
 
@@ -193,11 +193,11 @@ const Projects = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <p className="text-silver-400 text-lg mb-8">
-            Хочешь увидеть больше? Всё доступно в моем портфолио
+          <p className="text-silver-400 text-lg mb-8 text-indigo-500">
+            Хочешь увидеть больше? Всё доступно в моем github репозитории!
           </p>
           <motion.a
-            href="https://github.com"
+            href="https://github.com/Sayrex009?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
