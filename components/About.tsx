@@ -73,9 +73,9 @@ const FEATURES = [
 
 // Статистика для нижнего блока
 const STATS = [
-  { number: '50+', label: 'Проектов завершено' },
+  { number: '5+', label: 'Проектов завершено' },
   { number: '100%', label: 'Lighthouse Score' },
-  { number: '5+', label: 'Лет опыта' },
+  { number: '2+', label: 'В IT индустрии' },
   { number: '∞', label: 'Внимания к деталям' },
 ] as const;
 
@@ -96,7 +96,6 @@ const About = () => {
 
   return (
     <section id="about" className="relative py-32 px-6 bg-slate-950 overflow-hidden">
-      {/* Фоновые декоративные элементы */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
           className="absolute -left-40 top-1/3 w-96 h-96 bg-violet-600 rounded-full mix-blend-multiply filter blur-3xl opacity-15"
@@ -109,7 +108,6 @@ const About = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Заголовок секции */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +132,6 @@ const About = () => {
           </h2>
         </motion.div>
 
-        {/* Сетка карточек с особенностями */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -150,7 +147,6 @@ const About = () => {
               onMouseLeave={() => setHoveredCard(null)}
               className="group relative h-full"
             >
-              {/* Светящийся фон при наведении */}
               <motion.div
                 className={`absolute -inset-1 bg-gradient-to-r ${feature.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition duration-500`}
                 animate={
@@ -160,14 +156,11 @@ const About = () => {
                 }
               />
 
-              {/* Сама карточка */}
               <div
                 className={`relative h-full bg-slate-900/40 backdrop-blur-xl border ${feature.borderColor} rounded-2xl p-8 transition-all duration-300 hover:bg-slate-900/60 overflow-hidden`}
               >
-                {/* Декоративная верхняя линия */}
                 <motion.div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
 
-                {/* Иконка с анимацией */}
                 <motion.div
                   className="text-5xl mb-6"
                   animate={
@@ -180,11 +173,11 @@ const About = () => {
                   {feature.icon}
                 </motion.div>
 
-                <h3 className="text-xl font-bold text-silver-200 mb-3 leading-tight">
+                <h3 className="text-xl text-[#ffff] font-bold text-silver-200 mb-3 leading-tight">
                   {feature.title}
                 </h3>
 
-                <p className="text-silver-400 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-silver-400 text-[#ffff] text-sm leading-relaxed mb-6 flex-grow">
                   {feature.description}
                 </p>
 
@@ -229,15 +222,16 @@ const About = () => {
 
             <div className="relative grid md:grid-cols-2 gap-12 items-center">
               {/* Текстовая часть */}
-              <div className="space-y-6">
+              <div className="space-y-6 text-[#ffff]">
                 <p className="text-lg text-silver-300 leading-relaxed">
-                  Я создаю веб-приложения, которые не просто функционируют, а{' '}
+                  Привет! Я — Юсуфбек, Fullstack разработчик с страстью к созданию
+                   веб-приложения, которые не просто функционируют, а{' '}
                   <span className="text-violet-400 font-semibold">
                     вдохновляют
                   </span>{' '}
                   своим дизайном и производительностью.
                 </p>
-                <p className="text-silver-400 leading-relaxed">
+                <p className="text-[#ffff] leading-relaxed">
                   Каждый проект для меня — это баланс между эстетикой,
                   функциональностью и технической совершенностью. Я верю, что
                   отличное программное обеспечение должно быть быстрым, красивым
@@ -246,7 +240,7 @@ const About = () => {
 
                 <motion.div whileHover={{ x: 5 }} className="inline-block pt-2">
                   <a
-                    href="https://github.com"
+                    href="https://github.com/Sayrex009?tab=repositories"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-violet-400 font-semibold hover:text-violet-300 transition-colors group/link"
@@ -271,10 +265,10 @@ const About = () => {
                     whileHover={{ scale: 1.05, y: -5 }}
                     className="bg-slate-800/40 border border-violet-500/20 rounded-xl p-6 text-center hover:border-violet-500/50 transition-all"
                   >
-                    <p className="text-3xl font-bold bg-gradient-to-r from-silver-300 to-violet-400 bg-clip-text text-transparent">
+                    <p className="text-3xl font-bold  bg-gradient-to-r from-silver-300 to-violet-400 bg-clip-text text-transparent">
                       {stat.number}
                     </p>
-                    <p className="text-silver-400 text-sm mt-2">{stat.label}</p>
+                    <p className="text-silver-400 text-[#ffff] text-sm mt-2">{stat.label}</p>
                   </motion.div>
                 ))}
               </div>
