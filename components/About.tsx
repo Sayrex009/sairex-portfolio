@@ -75,7 +75,7 @@ const FEATURES = [
 const STATS = [
   { number: '5+', label: 'Проектов завершено' },
   { number: '100%', label: 'Lighthouse Score' },
-  { number: '2+', label: 'В IT индустрии' },
+  { number: '2+ лет', label: 'В IT индустрии' },
   { number: '∞', label: 'Внимания к деталям' },
 ] as const;
 
